@@ -16,8 +16,10 @@ namespace InterDept.Controllers
 
         public IActionResult Index()
         {
-            IEnumerable <Category> objCategory = _unitOfWork.Category.GetAll();
-            return View(objCategory);
+            //IEnumerable <Category> objCategory = _unitOfWork.Category.GetAll();
+
+            var CategoryList = _unitOfWork.Category.GetAll();
+            return Json(new {data=CategoryList});
         }
 
         public IActionResult Create()

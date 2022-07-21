@@ -1,4 +1,7 @@
-﻿@model IEnumerable<Category>
+﻿
+@model IEnumerable<Category>
+@using InterDept.Utility
+
 
 <div class="container p-3">
     <div class="row pt-4">
@@ -11,7 +14,7 @@
             </a>
         </div>
     </div>
-    <table class="table table-borderd table-striped" style="width:100%">
+    <table id="tblData" class="table table-borderd table-striped" style="width:100%">
         <thead>
             <tr>
                 <th>Heading</th>
@@ -21,7 +24,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach(var obj in Model)
+            @foreach (var obj in Model)
             {
                 <tr>
                     <td width="30%">
@@ -29,24 +32,32 @@
                     </td>
                     <td width="30%">
                         @obj.FileInDate
-                        
+
                     </td>
                     <td width="30%">
                         @obj.FileOutDate
                     </td>
+                    @if(User.IsInRole(SD.Role_Admin)){
                     <td>
-                       <div class="w-75% btn-group" role="group">
-                           <a asp-controller="Category" asp-action="Edit" asp-route-id="@obj.Id" class="btn btn-secondary" style="margin-right:16px">Edit</a>
-                           <a asp-controller="Category" asp-action="Delete" asp-route-id="@obj.Id" class="btn btn-danger" style="margin-right:16px">Delete</a>
-                       </div>
+                     
+                        <div class="w-75% btn-group" role="group">
+                            <a asp-controller="Category" asp-action="Edit" asp-route-id="@obj.Id" class="btn btn-secondary" style="margin-right:16px">Edit</a>
+                            <a asp-controller="Category" asp-action="Delete" asp-route-id="@obj.Id" class="btn btn-danger" style="margin-right:16px">Delete</a>
+                        </div>   
                     </td>
+                    }
                 </tr>
             }
         </tbody>
-
     </table>
-
 </div>
+
+@section Scripts{
+    <script src="~/js/dataEntry.js"></script>
+}
+
+
+
 
 
 
