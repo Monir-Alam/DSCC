@@ -18,8 +18,8 @@ namespace InterDept.Controllers
         {
             //IEnumerable <Category> objCategory = _unitOfWork.Category.GetAll();
 
-            var CategoryList = _unitOfWork.Category.GetAll();
-            return Json(new {data=CategoryList});
+            //var CategoryList = _unitOfWork.Category.GetAll();
+            return View();
         }
 
         public IActionResult Create()
@@ -110,7 +110,14 @@ namespace InterDept.Controllers
             return RedirectToAction("Index");
         }
 
-
+        #region API CALLS
+        [HttpGet]
+        public IActionResult GetAll()
+        {
+            var CategoryList = _unitOfWork.Category.GetAll();
+            return Json(new { data = CategoryList });
+        }
+        #endregion
 
     }
 }

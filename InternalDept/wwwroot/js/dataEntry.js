@@ -7,12 +7,12 @@ $(document).ready(function () {
 function loadDataTable() {
     dataTable = $('#tblData').DataTable({
         "ajax": {
-            "url": "/Category/Index"
+            "url": "/Category/GetAll"
         },
         "columns": [
-            { "data": "FileHeading" },
-            { "data": "FileInDate" },
-            { "data": "FileOutDate" }
+            { "data": "fileHeading" },
+            { "data": "fileInDate" },
+            { "data": "fileOutDate" },
         ]
     });
 }
